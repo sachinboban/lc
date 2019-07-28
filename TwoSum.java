@@ -27,17 +27,15 @@ class Solution {
         int complement;
         HashMap <Integer, Integer> map = new HashMap<>();
 
-        // Insert (number, index) pair into has map
         for (i = 0; i < nums.length; ++i) {
-            map.put(nums[i], i);
-        }
-
-        // Check whether the HashMap contains the complement
-        for (i = 0; i < nums.length; ++i) {
+            // check whether the HashMap already contains the complement
             complement = target - nums[i];
-            if (map.containsKey(complement) && map.get(complement) != i) {
-                return new int[]{i, map.get(complement)};
+            if (map.containsKey(complement) ) {
+                return new int[]{map.get(complement), i};
             }
+
+            //insert number and index to the hash map
+            map.put(nums[i], i);
         }
 
         throw new IllegalArgumentException("No two sum solution");
